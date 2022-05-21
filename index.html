@@ -5,10 +5,18 @@
     <title>Web Game Final</title>
 </head>
 <body>
-    <div>
+    <div style="position:relative; display: inline-block;">
+        <div style="position: absolute; display: flex; width: 100%; align-items: center;">
+            <!--Player Health Bar-->
+            <div style="background-color:red; height: 30px; width: 100%;"></div>
+            <!--Timer-->
+            <div style="background-color:white; width: 100px; height: 100px; flex-shrink: 0;"></div>
+            <!--Enemy Health Bar-->
+            <div style="background-color:red; height: 30px; width: 100%;"></div>
+        </div>
         <canvas></canvas>
     </div>
-    
+
     <script src="index.js"></script>
 </body>
 </html>
