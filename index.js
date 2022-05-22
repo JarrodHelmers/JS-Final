@@ -8,14 +8,14 @@ canvas.height = 576
 
 c.fillRect(0, 0, canvas.width, canvas.height)
 
-//Making Gravity
 const background = new Sprite({
-    position: {
-        x: 0,
-        y: 0
-    },
-    imageSrc: './assets/Background.png'
+  position: {
+    x: 0,
+    y: 0
+  },
+  imageSrc: './assets/Background.png'
 })
+//Making Gravity
 const gravity = 0.7
 
 //Player
@@ -31,6 +31,31 @@ const player = new Fighter({
   offset: {
     x: 0,
     y: 0
+  },
+  imageSrc: './assets/Sprite/Idle.png',
+  framesMax: 8,
+  scale: 2,
+  offset: {
+    x: 0,
+    y: 12
+  },
+  sprites: {
+    idle: {
+      imageSrc: './assets/Sprite/Idle.png',
+      framesMax: 8
+    },
+    run: {
+      imageSrc: './assets/Sprite/Run.png',
+      framesMax: 8,
+    },
+    jump: {
+      imageSrc: './assets/Sprite/Going Up.png',
+      framesMax: 3
+    },
+    attack1: {
+      imageSrc: './assets/Sprite/Attack1.png',
+      framesMax: 7
+    }
   }
 })
 
@@ -77,7 +102,7 @@ function animate() {
   c.fillRect(0, 0, canvas.width, canvas.height)
   background.update()
   player.update()
-  enemy.update()
+ // enemy.update()
   
   player.velocity.x = 0
   enemy.velocity.x = 0
@@ -85,8 +110,16 @@ function animate() {
   // player movement
   if (keys.a.pressed && player.lastKey === 'a') {
     player.velocity.x = -5
+    player.switchSprite('run')
   } else if (keys.d.pressed && player.lastKey === 'd') {
     player.velocity.x = 5
+    player.switchSprite('run')
+  } else {
+    player.switchSprite('idle')
+  }
+
+  if (player.velocity < 0) {
+    player.switchSprite('jump')
   }
 
   // Enemy movement
